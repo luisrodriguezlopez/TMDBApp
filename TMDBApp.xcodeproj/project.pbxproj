@@ -51,6 +51,7 @@
 		EE118DC02C6D9DE2007428DA /* TMDBAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TMDBAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE118DC42C6D9DE2007428DA /* TMDBAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAppUITests.swift; sourceTree = "<group>"; };
 		EE118DC62C6D9DE2007428DA /* TMDBAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		EE118DD32C6DA9CF007428DA /* secure.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = secure.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +110,7 @@
 				EE118DAE2C6D9DE2007428DA /* LaunchScreen.storyboard */,
 				EE118DB12C6D9DE2007428DA /* Info.plist */,
 				EE118DA92C6D9DE0007428DA /* TMDBApp.xcdatamodeld */,
+				EE118DD32C6DA9CF007428DA /* secure.xcconfig */,
 			);
 			path = TMDBApp;
 			sourceTree = "<group>";
