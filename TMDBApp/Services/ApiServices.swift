@@ -47,11 +47,11 @@ class ApiManager {
         return request
     }
     
-    func getMovies(success : @escaping (_ movies : MovieResponse) -> () , onError: @escaping(_ error:NSError) -> ()) {
+    func getMovies(success : @escaping (_ movies : MoviesViewModels.FetchMoviewsView.Response) -> () , onError: @escaping(_ error:NSError) -> ()) {
         var request = configRequest()
 
         self.getCall(request: request) { data in
-            guard  let dataJson = try? JSONDecoder().decode(MovieResponse.self, from: data)  else {
+            guard  let dataJson = try? JSONDecoder().decode(MoviesViewModels.FetchMoviewsView.Response.self, from: data)  else {
                 return
             }
             success(dataJson)

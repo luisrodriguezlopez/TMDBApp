@@ -4,7 +4,7 @@
 //
 //  Created by luis rodriguez on 15/08/24.
 //
-
+/*
 import SwiftUI
 struct ContentView: View {
     @State private var networkManager = NetworkManager()
@@ -20,7 +20,7 @@ struct ContentView: View {
         }
         .onReceive(self.timer) { _ in
            
-        self.msg =  self.networkManager.checkInternetConnectionDevice()
+            self.msg =  self.networkManager.checkInternetConnectionDevice
                 self.image = networkManager.getImage()
             }
         }
@@ -30,3 +30,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+*/

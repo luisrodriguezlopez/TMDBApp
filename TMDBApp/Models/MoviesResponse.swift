@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct MovieResponse : Decodable {
+/*struct MovieResponse : Decodable {
     var page : Int?
     var movies : [Movie]?
     
@@ -25,7 +25,7 @@ struct MovieResponse : Decodable {
     }
             
 }
-
+*/
 
 extension Decodable {
     func loadJson<T: Decodable>(fileName: String, type: T.Type) -> T? {

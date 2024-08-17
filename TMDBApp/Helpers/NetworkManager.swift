@@ -6,12 +6,13 @@
 //
 
 import Network
+protocol NetworkConnection {
+    func checkInternetConnection(completion: @escaping(Bool) -> Void)
+}
 
-class NetworkManager {
-    private var isConnectedMsg:String = ""
-    private var image:String = ""
-    private var connection : Bool = false
-    
+class NetworkManager : NetworkConnection {
+  var connection : Bool = false
+    /*
     func checkInternetConnectionDevice() -> String {
         
         let monitor = NWPathMonitor()
@@ -24,7 +25,7 @@ class NetworkManager {
         let queue = DispatchQueue(label: "NetworkMonitorMessage")
         monitor.start(queue: queue)
         return self.isConnectedMsg
-    }
+    }*/
     
     func checkInternetConnection(completion: @escaping(Bool) -> Void) {
         let monitor = NWPathMonitor()
@@ -36,9 +37,6 @@ class NetworkManager {
         monitor.start(queue: queue)
     }
     
-    func getImage() -> String {
-        return self.image
-    }
     
 }
 
