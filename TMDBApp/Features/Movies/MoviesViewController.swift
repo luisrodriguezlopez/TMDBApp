@@ -13,7 +13,7 @@ protocol MoviesViewDisplayLogic: AnyObject {
     func displayMoviewsView(viewModel: MoviesViewModels.FetchMoviewsView.ViewModel)
 }
 
-class MoviesViewViewController: UIViewController {
+class MoviesViewController: UIViewController {
 
     // MARK: - Constants
 
@@ -25,7 +25,9 @@ class MoviesViewViewController: UIViewController {
 
     var interactor: MoviesViewBusinessLogic?
     var router: (MoviesViewRoutingLogic & MoviesViewDataPassing)?
-
+    var remoteWorker : RemoteWorker?
+    var localWorker: LocalWorker?
+    var worker: MoviesViewWorker?
     // MARK: - Private Properties
 
     // MARK: - Main Views
@@ -55,32 +57,32 @@ class MoviesViewViewController: UIViewController {
     // MARK: - Initialization
 
     private func setupVIPCycle() {
-        let viewController = self
+     //   let viewController = self
+        guard let worker = self.worker else {
+             print("Error: Worker es nil.")
+             return
+         }
         let interactor = MoviesViewInteractor()
+      
         let presenter = MoviesViewPresenter()
         let router = MoviesViewRouter()
-        viewController.interactor = interactor
-        viewController.router = router
+        self.router = router
         interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
+        
+        presenter.viewController = self
+        interactor.worker = self.worker
+        self.interactor = interactor
+
+        router.viewController = self
         router.dataStore = interactor
     }
-
-    required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setupVIPCycle()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupVIPCycle()
-    }
+  
 
     // MARK: - View Controller Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupVIPCycle()
         setupUI()
         setupAccessibilityIdentifers()
         performRequest()
@@ -89,6 +91,7 @@ class MoviesViewViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setupUI() {
+       // self.view.backgroundColor = .white
     }
 
     private func setupAccessibilityIdentifers() {
@@ -104,7 +107,8 @@ class MoviesViewViewController: UIViewController {
 
 // MARK: - MoviesViewDisplayLogic
 
-extension MoviesViewViewController: MoviesViewDisplayLogic {
+extension MoviesViewController: MoviesViewDisplayLogic {
     func displayMoviewsView(viewModel: MoviesViewModels.FetchMoviewsView.ViewModel) {
+        print(viewModel)
     }
 }

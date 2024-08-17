@@ -25,8 +25,7 @@ class MoviesViewInteractor: MoviesViewBusinessLogic, MoviesViewDataStore {
     // MARK: - Public Properties
 
     var presenter: MoviesViewPresentationLogic?
-    var worker: MoviesViewWorkerProtocol = MoviesViewWorker()
-
+    var worker : MoviesViewWorker?
     // MARK: - Data Store
 
     // MARK: - Private Properties
@@ -41,7 +40,9 @@ class MoviesViewInteractor: MoviesViewBusinessLogic, MoviesViewDataStore {
 
     func fetchMoviewsView(request: MoviesViewModels.FetchMoviewsView.Request) {
         // Perform network requests here and present afterwards
-        let response = MoviesViewModels.FetchMoviewsView.Response()
-        presenter?.presentMoviewsView(response: response)
+        self.worker?.fetchMoviewsView { response in
+            self.presenter?.presentMoviewsView(response: response)
+
+        }
     }
 }

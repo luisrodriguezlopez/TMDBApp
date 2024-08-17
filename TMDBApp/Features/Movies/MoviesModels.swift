@@ -17,7 +17,23 @@ enum MoviesViewModels {
         struct Request {
         }
         
-        struct Response {
+        struct Response: Decodable {
+            var page : Int?
+            var movies : [Movie]?
+            
+            enum CodingKeys: String, CodingKey {
+                   case movies = "results"
+            }
+            init() { }
+            
+            public init(from decoder: Decoder) throws {
+                   do {
+                    let container = try decoder.container(keyedBy: CodingKeys.self)
+                    movies = try container.decode([Movie].self, forKey: .movies)
+                   } catch {
+                    print(error)
+                   }
+            }
         }
         
         struct ViewModel {

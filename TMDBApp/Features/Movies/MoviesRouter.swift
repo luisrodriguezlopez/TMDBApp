@@ -21,7 +21,7 @@ class MoviesViewRouter: MoviesViewRoutingLogic, MoviesViewDataPassing {
     
     // MARK: - Properties
 
-    weak var viewController: MoviesViewViewController?
+    weak var viewController: MoviesViewController?
     var dataStore: MoviesViewDataStore?
 
     // MARK: - MoviesViewRoutingLogic
