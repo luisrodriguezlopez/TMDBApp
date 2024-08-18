@@ -25,7 +25,6 @@
 		EE207F662C6DF10300C7777B /* MoviesViewWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE207F652C6DF10300C7777B /* MoviesViewWorkerTests.swift */; };
 		EE207F682C6E77BF00C7777B /* movies.json in Resources */ = {isa = PBXBuildFile; fileRef = EE207F672C6E77BF00C7777B /* movies.json */; };
 		EE207F692C6E7D1600C7777B /* movies.json in Resources */ = {isa = PBXBuildFile; fileRef = EE207F672C6E77BF00C7777B /* movies.json */; };
-		EE207F6B2C6E7E5900C7777B /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE207F6A2C6E7E5900C7777B /* DataLoader.swift */; };
 		EE207F732C6E83FD00C7777B /* MoviesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE207F6D2C6E83FD00C7777B /* MoviesPresenter.swift */; };
 		EE207F742C6E83FD00C7777B /* MoviesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE207F6E2C6E83FD00C7777B /* MoviesWorker.swift */; };
 		EE207F752C6E83FD00C7777B /* MoviesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE207F6F2C6E83FD00C7777B /* MoviesRouter.swift */; };
@@ -89,7 +88,6 @@
 		EE207F622C6DEFB800C7777B /* ServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTestCase.swift; sourceTree = "<group>"; };
 		EE207F652C6DF10300C7777B /* MoviesViewWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesViewWorkerTests.swift; sourceTree = "<group>"; };
 		EE207F672C6E77BF00C7777B /* movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movies.json; sourceTree = "<group>"; };
-		EE207F6A2C6E7E5900C7777B /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		EE207F6D2C6E83FD00C7777B /* MoviesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPresenter.swift; sourceTree = "<group>"; };
 		EE207F6E2C6E83FD00C7777B /* MoviesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesWorker.swift; sourceTree = "<group>"; };
 		EE207F6F2C6E83FD00C7777B /* MoviesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesRouter.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				EE118DD82C6DC282007428DA /* ApiServices.swift */,
-				EE207F6A2C6E7E5900C7777B /* DataLoader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -448,7 +445,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE207F6B2C6E7E5900C7777B /* DataLoader.swift in Sources */,
 				EE4882E12C715615004605B0 /* DetailInteractor.swift in Sources */,
 				EE4882DE2C715615004605B0 /* DetailRouter.swift in Sources */,
 				EEF875AB2C710B34002B7DF4 /* ImageExtension.swift in Sources */,

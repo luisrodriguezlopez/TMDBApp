@@ -12,7 +12,7 @@ protocol MoviesViewWorkerProtocol {
 }
 class RemoteWorker: MoviesViewWorkerProtocol {
     func fetchMoviewsView(list:ListType,page: Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
-        ApiConfig().apiManager?.getMovies(page:1, listType: list) { movies in
+        ApiConfig().apiManager?.getMovies(page:page, listType: list) { movies in
             completion(movies)
         } onError: { error in
             

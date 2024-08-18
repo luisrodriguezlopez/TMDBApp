@@ -12,21 +12,7 @@ protocol NetworkConnection {
 
 class NetworkManager : NetworkConnection {
   var connection : Bool = false
-    /*
-    func checkInternetConnectionDevice() -> String {
-        
-        let monitor = NWPathMonitor()
-        monitor.pathUpdateHandler = { path in
-            let connectivity = path.status == .satisfied
-            self.isConnectedMsg   =  connectivity ?  "Connected to the internet" : "No internet connection"
-            self.image =  connectivity  ? "network" : "network.slash"
-                
-        }
-        let queue = DispatchQueue(label: "NetworkMonitorMessage")
-        monitor.start(queue: queue)
-        return self.isConnectedMsg
-    }*/
-    
+
     func checkInternetConnection(completion: @escaping(Bool) -> Void) {
         let monitor = NWPathMonitor()
         monitor.pathUpdateHandler = { path  in

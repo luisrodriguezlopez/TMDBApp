@@ -58,7 +58,8 @@ final class MoviesViewTestCase: XCTestCase {
         collectionView.frame = sut.view.frame
         //sut.collectionView.register(MoviewCollectionViewCell.self,
         //                            forCellWithReuseIdentifier: "moviesCell")
-        sut.moviesModel = MoviesViewModels.FetchMoviewsView.Response().loadJson(fileName: "movies", type: MoviesViewModels.FetchMoviewsView.Response.self)!.movies!;     XCTAssertTrue(sut.moviesModel.count > 0)
+        sut.customGird.moviesModelPopular = MoviesViewModels.FetchMoviewsView.Response().loadJson(fileName: "movies", type: MoviesViewModels.FetchMoviewsView.Response.self)!.movies!;
+        XCTAssertTrue( sut.customGird.moviesModelPopular.count > 0)
        
     }
     

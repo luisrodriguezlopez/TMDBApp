@@ -27,7 +27,7 @@ final class MovieWorkerTestCase: XCTestCase {
          
          sut.networkManager = MockNetworkManager()
          
-         sut.fetchMoviewsView { response  in
+         sut.fetchMoviewsView(list: .now_playing, page: 1) { response in
              countMovies = response.movies?.count ?? 0
              expectation.fulfill()
          }
@@ -46,7 +46,7 @@ final class MovieWorkerTestCase: XCTestCase {
                                             "return list of mockmovies")
          mockWorker.networkManager = MockNetworkManager()
 
-        mockWorker.fetchMoviewsView { movieResponse in
+         mockWorker.fetchMoviewsView(list: .now_playing, page: 1) { movieResponse in
             countMovies = movieResponse.movies?.count ?? 0
             expectationList.fulfill()
         }
@@ -67,7 +67,7 @@ class MockMoviesWorker : MoviesViewWorkerProtocol {
     var localMovies: LocalWorker?
     var networkManager : NetworkConnection?
     
-    func fetchMoviewsView(completion: @escaping(MoviesViewModels.FetchMoviewsView.Response) -> Void) {
+    func fetchMoviewsView(list: TMDBApp.ListType, page: Int, completion: @escaping (TMDBApp.MoviesViewModels.FetchMoviewsView.Response) -> Void) {
          networkManager?.checkInternetConnection(completion: { response in
              if let movieResponse: MoviesViewModels.FetchMoviewsView.Response = MoviesViewModels.FetchMoviewsView.Response().loadJson(fileName: "movies", type: MoviesViewModels.FetchMoviewsView.Response.self) {
                  

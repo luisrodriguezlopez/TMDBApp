@@ -41,7 +41,7 @@ final class MoviesViewWorkerTests: XCTestCase {
           networkManagerMock.isConnectedToInternet = true
 
           // Act
-          sut.fetchMoviewsView { _ in }
+          sut.fetchMoviewsView(list: .now_playing, page: 1) { _ in }
 
           // Assert
           XCTAssertFalse(localWorkerMock.fetchMoviesViewCalled)
@@ -52,7 +52,7 @@ final class MoviesViewWorkerTests: XCTestCase {
           networkManagerMock.isConnectedToInternet = false
 
           // Act
-          sut.fetchMoviewsView { _ in }
+          sut.fetchMoviewsView(list: .now_playing, page: 1) { _ in }
 
           // Assert
           XCTAssertFalse(remoteWorkerMock.fetchMoviesViewCalled)
@@ -68,7 +68,8 @@ final class MoviesViewWorkerTests: XCTestCase {
   class RemoteWorkerMock: RemoteWorker {
       var fetchMoviesViewCalled = false
 
-      override func fetchMoviewsView(completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
+      override func fetchMoviewsView(list:ListType,page: Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
+
           fetchMoviesViewCalled = true
           if let movieResponse: MoviesViewModels.FetchMoviewsView.Response = MoviesViewModels.FetchMoviewsView.Response().loadJson(fileName: "movies", type: MoviesViewModels.FetchMoviewsView.Response.self) {
               completion(movieResponse)
@@ -80,7 +81,7 @@ final class MoviesViewWorkerTests: XCTestCase {
 class LocalWorkerMock: LocalWorker {
     var fetchMoviesViewCalled = false
     
-    override func fetchMoviewsView(completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
+    override func fetchMoviewsView(list:ListType,page: Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
         fetchMoviesViewCalled = true
         if let movieResponse: MoviesViewModels.FetchMoviewsView.Response = MoviesViewModels.FetchMoviewsView.Response().loadJson(fileName: "movies", type: MoviesViewModels.FetchMoviewsView.Response.self) {
             completion(movieResponse)
@@ -102,7 +103,7 @@ class LocalWorkerMock: LocalWorker {
     
     class RemoteLoaderMock: MoviesViewWorkerProtocol {
         
-        func fetchMoviewsView(completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
+        func fetchMoviewsView(list: TMDBApp.ListType, page: Int, completion: @escaping (TMDBApp.MoviesViewModels.FetchMoviewsView.Response) -> Void) {
             if let movieResponse: MoviesViewModels.FetchMoviewsView.Response = MoviesViewModels.FetchMoviewsView.Response().loadJson(fileName: "movies", type: MoviesViewModels.FetchMoviewsView.Response.self) {
                 completion(movieResponse)
             }else {
@@ -112,9 +113,10 @@ class LocalWorkerMock: LocalWorker {
         
     }
     
-    class LocalLoaderMock: MoviesViewWorkerProtocol {
-        
-        func fetchMoviewsView(completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
+class LocalLoaderMock: MoviesViewWorkerProtocol {
+    
+    
+    func fetchMoviewsView(list: TMDBApp.ListType, page: Int, completion: @escaping (TMDBApp.MoviesViewModels.FetchMoviewsView.Response) -> Void) {
             if let movieResponse: MoviesViewModels.FetchMoviewsView.Response = MoviesViewModels.FetchMoviewsView.Response().loadJson(fileName: "movies", type: MoviesViewModels.FetchMoviewsView.Response.self) {
                 completion(movieResponse)
             }else {
@@ -161,7 +163,7 @@ class MoviesViewControllerTests: XCTestCase {
     class MoviesViewInteractorMock: MoviesViewInteractor {
         var fetchMoviesViewCalled = false
         
-        override func fetchMoviewsView(request: MoviesViewModels.FetchMoviewsView.Request) {
+        override func fetchMoviewsView(type: ListType) {
             fetchMoviesViewCalled = true
         }
     }
