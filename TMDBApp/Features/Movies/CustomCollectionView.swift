@@ -7,16 +7,28 @@
 
 import UIKit
 
+protocol MovieDisplayable {
+    var id : Int? { get }
+    var title : String? { get }
+    var override : String? { get }
+    var backdrop_path : String? { get }
+    var release_date : String? { get }
+    var original_language : String? { get }
+    var vote_average : Double? { get }
+    var poster_path: String? { get }
+
+}
+
 protocol paginationDelegate {
     func fetchPage()
 }
 protocol movieCellDelegate {
     func select(movie: Movie)
 }
-class CustomCollectionView: UIView {
+class CustomCollectionView<T>: UIView , UICollectionViewDelegate, UICollectionViewDataSource , UICollectionViewDataSourcePrefetching{
     
-    var moviesModelPopular : [Movie] = []
-    var moviesModelPlayingNow : [Movie] = []
+    var moviesModelPopular : [MovieDisplayable] = []
+    var moviesModelPlayingNow : [MovieDisplayable] = []
     var isPopular = true
     var pagination: paginationDelegate?
     var selectDelegate : movieCellDelegate?
@@ -50,7 +62,7 @@ class CustomCollectionView: UIView {
         
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.collectionView.prefetchDataSource = self
+        self.collectionView.prefetchDataSource = self 
         self.addSubview(self.collectionView)
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
         //    self.collectionView.frame = self.frame
@@ -67,7 +79,7 @@ class CustomCollectionView: UIView {
         
     }
     
-    func config(data: [Movie], list: ListType) {
+    func config(data: [MovieDisplayable], list: ListType) {
         switch (list) {
         case .popular :
             isPopular = true
@@ -80,10 +92,6 @@ class CustomCollectionView: UIView {
             self.collectionView.reloadData()
         }
     }
-}
-
-
-extension CustomCollectionView:   UICollectionViewDelegate, UICollectionViewDataSource {
     
     func configGrid() -> UICollectionViewCompositionalLayout {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
@@ -129,11 +137,10 @@ extension CustomCollectionView:   UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = isPopular ? moviesModelPopular[indexPath.row] :  moviesModelPlayingNow[indexPath.row]
-        self.selectDelegate?.select(movie: movie)
+        self.selectDelegate?.select(movie: movie as! Movie)
     }
     
-}
-extension CustomCollectionView: UICollectionViewDataSourcePrefetching {
+
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         let currentArray = isPopular ? self.moviesModelPopular : self.moviesModelPlayingNow
         if let indexPath = indexPaths.last, indexPath.row >= currentArray.count - 5 {

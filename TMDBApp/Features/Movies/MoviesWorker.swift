@@ -6,6 +6,7 @@
 //  Created by luis rodriguez on 15/08/24.
 //  Copyright © 2024 ___ORGANIZATIONNAME___. All rights reserved.
 //
+import Helpers
 import Services
 import Foundation
 protocol MoviesViewWorkerProtocol {
