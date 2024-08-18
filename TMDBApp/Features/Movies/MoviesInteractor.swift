@@ -7,8 +7,13 @@
 //  Copyright © 2024 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
+enum ListType: String  {
+    case popular = "popular"
+    case now_playing = "now_playing"
+}
+
 protocol MoviesViewBusinessLogic {
-    func fetchMoviewsView(request: MoviesViewModels.FetchMoviewsView.Request)
+    func fetchMoviewsView(type: ListType)
 }
 
 protocol MoviesViewDataStore {
@@ -18,7 +23,7 @@ protocol MoviesViewDataStore {
 class MoviesViewInteractor: MoviesViewBusinessLogic, MoviesViewDataStore {
     
     // MARK: - Constants
-
+    var pageCont = 0
     private enum LocalConstants {
     }
 
@@ -38,9 +43,10 @@ class MoviesViewInteractor: MoviesViewBusinessLogic, MoviesViewDataStore {
 
     // MARK: - MoviesViewBusinessLogic
 
-    func fetchMoviewsView(request: MoviesViewModels.FetchMoviewsView.Request) {
+    func fetchMoviewsView(type: ListType) {
+        pageCont += 1
         // Perform network requests here and present afterwards
-        self.worker?.fetchMoviewsView { response in
+        self.worker?.fetchMoviewsView(list: type, page: pageCont) { response in
             self.presenter?.presentMoviewsView(response: response)
 
         }

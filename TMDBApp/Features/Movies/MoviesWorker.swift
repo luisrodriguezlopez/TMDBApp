@@ -8,11 +8,11 @@
 //
 
 protocol MoviesViewWorkerProtocol {
-    func fetchMoviewsView(completion: @escaping (MoviesViewModels.FetchMoviewsView.Response)-> Void)
+    func fetchMoviewsView(list:ListType,page:Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response)-> Void)
 }
 class RemoteWorker: MoviesViewWorkerProtocol {
-    func fetchMoviewsView(completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
-        ApiConfig().apiManager?.getMovies { movies in
+    func fetchMoviewsView(list:ListType,page: Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
+        ApiConfig().apiManager?.getMovies(page:1, listType: list) { movies in
             completion(movies)
         } onError: { error in
             
@@ -22,7 +22,7 @@ class RemoteWorker: MoviesViewWorkerProtocol {
 }
 
 class LocalWorker: MoviesViewWorkerProtocol {
-    func fetchMoviewsView(completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
+    func fetchMoviewsView(list:ListType,page: Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
         
     }
 }
@@ -34,10 +34,10 @@ class MoviesViewWorker : MoviesViewWorkerProtocol {
     
    
     
-    func fetchMoviewsView(completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
+    func fetchMoviewsView(list:ListType,page: Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
         NetworkManager().checkInternetConnection { [weak self] connection in
-            let load =  connection == true ? self?.remoteMovies?.fetchMoviewsView : self?.localMovies?.fetchMoviewsView
-            load!(completion)
+            let load =  connection == true ? self?.remoteMovies?.fetchMoviewsView(list: list,page:page ,completion:completion) : self?.localMovies?.fetchMoviewsView(list: list,page:page ,completion:completion)
+            
         }
         
     }

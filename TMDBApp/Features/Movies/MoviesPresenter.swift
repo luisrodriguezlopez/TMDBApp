@@ -37,7 +37,6 @@ class MoviesViewPresenter: MoviesViewPresentationLogic {
     // MARK: - MoviesViewPresentationLogic
 
     func presentMoviewsView(response: MoviesViewModels.FetchMoviewsView.Response) {
-        let viewModel = MoviesViewModels.FetchMoviewsView.ViewModel()
-        viewController?.displayMoviewsView(viewModel: viewModel)
+        viewController?.displayMoviewsView(viewModel: response)
     }
 }

@@ -10,7 +10,7 @@
 import UIKit
 
 protocol MoviesViewRoutingLogic {
-    func routeToExampleDetail()
+    func routeToExampleDetail(movie: Movie)
 }
 
 protocol MoviesViewDataPassing {
@@ -26,15 +26,11 @@ class MoviesViewRouter: MoviesViewRoutingLogic, MoviesViewDataPassing {
 
     // MARK: - MoviesViewRoutingLogic
 
-    func routeToExampleDetail() {
-        /*
-         let exampleDetailViewController = ExampleDetailViewController()
-
-         if var destination = menuOptionsViewController.router?.dataStore, let source = self.dataStore {
-            self.passDataToExampleDetail(source: source, destination: &destination)
-         }
-         viewController?.present(exampleDetailViewController, animated: true)
-         */
+    func routeToExampleDetail(movie: Movie) {
+        let detail = DetailViewController()
+        detail.viewModel = movie
+         viewController?.present(detail, animated: true)
+         
     }
 
     // MARK: - Helpers
