@@ -155,7 +155,7 @@ class MoviesViewControllerTests: XCTestCase {
         remoteWorkerMock = RemoteWorkerMock()
         localWorkerMock = LocalWorkerMock()
         worker = MockMoviesWorker()
-        sut = MoviesViewController(nibName: nil, bundle: nil)
+        sut = MoviesViewController()
         sut.interactor = interactorMock
         sut.router = routerMock
         sut.remoteWorker = remoteWorkerMock
@@ -170,50 +170,8 @@ class MoviesViewControllerTests: XCTestCase {
         localWorkerMock = nil
         super.tearDown()
     }
-    /*
-     func testSetupVIPCycle_WhenInit_UpdatesInteractorAndPresenter() {
-     // Arrange
+   
      
-     // Act
-     
-     // Assert
-     XCTAssertNotNil(sut.interactor)
-     XCTAssertNotNil(sut.interactor?.worker)
-     XCTAssertNotNil(sut.interactor?.worker?.localMovies)
-     XCTAssertNotNil(sut.interactor?.worker?.remoteMovies)
-     }
-     */
-    func testViewDidLoad_WhenCalled_SetsUpUIAndAccessibilityIdentifiers() {
-        // Arrange
-        
-        // Act
-        sut.viewDidLoad()
-        
-        // Assert
-        // Add assertions to verify setupUI and setupAccessibilityIdentifiers were called
-    }
-    /*
-     func testPerformRequest_WhenCalled_FetchesMoviesView() {
-     // Arrange
-     
-     // Act
-     sut.performRequest()
-     
-     // Assert
-     XCTAssertTrue(interactorMock.fetchMoviesViewCalled)
-     }
-     
-     func testDisplayMoviewsView_WhenCalled_UpdatesUI() {
-     // Arrange
-     
-     // Act
-     sut.displayMoviewsView(viewModel: MoviesViewModels.FetchMoviewsView.ViewModel())
-     
-     // Assert
-     // Add assertions to verify UI was updated
-     }
-     }
-     */
     class MoviesViewInteractorMock: MoviesViewInteractor {
         var fetchMoviesViewCalled = false
         
