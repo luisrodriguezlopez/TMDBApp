@@ -36,19 +36,20 @@ class ApiManager {
     //MAKR:
         /** Configurar URLRequest  **/
         // remover movie/now y hacer enums de los posibles paths
-    func configRequest() -> URLRequest {
-        let url: String = "\(url)/\(version)/movie/now_playing?api_key=\(token)"
+    func configRequest(list: String,page: Int) -> URLRequest {
+        let url: String = "\(url)/\(version)/movie/\(list)?page=\(page)&sort_by=popularity.desc"
         let baseURL = URL(string: url)!
         var request = URLRequest(url: baseURL)
         let jsonHeader = "application/json"
+        let autho = "Bearer \(token)"
         request.setValue(jsonHeader, forHTTPHeaderField: "Accept")
-        request.setValue(jsonHeader, forHTTPHeaderField: "Content-Type")
+        request.setValue(autho, forHTTPHeaderField: "Authorization")
         request.httpMethod = method
         return request
     }
     
-    func getMovies(success : @escaping (_ movies : MoviesViewModels.FetchMoviewsView.Response) -> () , onError: @escaping(_ error:NSError) -> ()) {
-        var request = configRequest()
+    func getMovies(page: Int , listType: ListType ,success : @escaping (_ movies : MoviesViewModels.FetchMoviewsView.Response) -> () , onError: @escaping(_ error:NSError) -> ()) {
+        var request = configRequest(list: listType.rawValue, page: page)
 
         self.getCall(request: request) { data in
             guard  let dataJson = try? JSONDecoder().decode(MoviesViewModels.FetchMoviewsView.Response.self, from: data)  else {
