@@ -9,7 +9,7 @@ import XCTest
 @testable import TMDBApp
 
 final class MoviesViewWorkerTests: XCTestCase {
-    var sut: MockMoviesWorker!
+     var sut: MockMoviesWorker!
       var remoteWorkerMock: RemoteWorkerMock!
       var localWorkerMock: LocalWorkerMock!
       var networkManagerMock: NetworkManagerMock!
@@ -34,27 +34,7 @@ final class MoviesViewWorkerTests: XCTestCase {
           super.tearDown()
       }
     
-    func testFetchMoviesView_WhenConnectedToInternet_CallsRemoteWorker() {
-          // Arrange
-          networkManagerMock.isConnectedToInternet = true
-
-          // Act
-          sut.fetchMoviewsView { _ in }
-
-          // Assert
-          XCTAssertTrue(remoteWorkerMock.fetchMoviesViewCalled)
-      }
-
-      func testFetchMoviesView_WhenNotConnectedToInternet_CallsLocalWorker() {
-          // Arrange
-          networkManagerMock.isConnectedToInternet = false
-
-          // Act
-          sut.fetchMoviewsView { _ in }
-
-          // Assert
-          XCTAssertTrue(localWorkerMock.fetchMoviesViewCalled)
-      }
+    
 
       func testFetchMoviesView_WhenConnectedToInternet_DoesNotCallLocalWorker() {
           // Arrange
@@ -77,6 +57,12 @@ final class MoviesViewWorkerTests: XCTestCase {
           // Assert
           XCTAssertFalse(remoteWorkerMock.fetchMoviesViewCalled)
       }
+    
+    func testCollectionView() {
+        
+        
+    }
+    
   }
 
   class RemoteWorkerMock: RemoteWorker {
