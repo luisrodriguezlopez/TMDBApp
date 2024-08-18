@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import TMDBApp
+@testable import ui_core
 final class MoviesViewTestCase: XCTestCase {
     let sut = MoviesViewController()
     

@@ -30,7 +30,7 @@ class MoviewCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(data: Movie) {
+    func configure<T: MovieDisplayable>(data: T) {
         self.imageView.loadImage(from: "https://image.tmdb.org/t/p/original/\(data.poster_path ?? "")")
     }
     
@@ -50,8 +50,7 @@ class MoviewCollectionViewCell: UICollectionViewCell {
         imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
 
         self.backgroundColor = UIColor(named: "background")
-       // imageView.clipsToBounds = true
-       // imageView.layer.cornerRadius = 40
+
     }
     
 

@@ -7,6 +7,8 @@
 
 import XCTest
 @testable import TMDBApp
+@testable import Helpers
+
 final class MovieWorkerTestCase: XCTestCase {
     
     override func setUpWithError() throws {

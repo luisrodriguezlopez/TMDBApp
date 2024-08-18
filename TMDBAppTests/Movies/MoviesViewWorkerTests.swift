@@ -7,6 +7,8 @@
 
 import XCTest
 @testable import TMDBApp
+@testable  import Services
+@testable  import Helpers
 
 final class MoviesViewWorkerTests: XCTestCase {
      var sut: MockMoviesWorker!

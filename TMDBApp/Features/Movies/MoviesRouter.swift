@@ -8,9 +8,9 @@
 //
 
 import UIKit
-
+import ui_core
 protocol MoviesViewRoutingLogic {
-    func routeToExampleDetail(movie: Movie)
+    func routeToExampleDetail(movie: MovieDisplayable)
 }
 
 protocol MoviesViewDataPassing {
@@ -26,9 +26,9 @@ class MoviesViewRouter: MoviesViewRoutingLogic, MoviesViewDataPassing {
 
     // MARK: - MoviesViewRoutingLogic
 
-    func routeToExampleDetail(movie: Movie) {
-        let detail = DetailViewController()
-        detail.viewModel = movie
+    func routeToExampleDetail(movie: MovieDisplayable) {
+        var detail = DetailViewController()
+        detail.viewModel = movie as! Movie
          viewController?.present(detail, animated: true)
          
     }

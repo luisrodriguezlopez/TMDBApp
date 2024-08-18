@@ -33,6 +33,7 @@ class DetailViewController: UIViewController {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 8
+        image.accessibilityIdentifier = "Image Detail"
         return image
     }()
     
@@ -123,7 +124,6 @@ class DetailViewController: UIViewController {
         stackView.distribution = .equalSpacing
         stackView.axis = .horizontal
         stackView.isLayoutMarginsRelativeArrangement = false
-     //   stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
         return stackView
     }()
     
@@ -133,30 +133,6 @@ class DetailViewController: UIViewController {
     var router: (DetailRoutingLogic & DetailDataPassing)?
 
     // MARK: - Private Properties
-
-    // MARK: - Main Views
-
-    /* TODO: REMOVE EXAMPLE
-        private let scrollView: UIScrollView = {
-            let scrollView = UIScrollView()
-            scrollView.bounces = true
-            scrollView.alwaysBounceVertical = true
-            scrollView.showsHorizontalScrollIndicator = false
-            return scrollView
-        }()
-    */
-
-    // MARK: Content Views
-
-    /*  TODO: REMOVE EXAMPLE
-        fileprivate let accessStackView: UIStackView = {
-            let stackView = UIStackView()
-            stackView.axis = .vertical
-            stackView.distribution = .fill
-            stackView.alignment = .fill
-            return stackView
-        }()
-    */
 
     // MARK: - Initialization
 

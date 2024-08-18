@@ -8,7 +8,7 @@
 //
 
 import UIKit
-
+import ui_core
 
 
 protocol MoviesViewDisplayLogic: AnyObject {
@@ -18,8 +18,8 @@ protocol MoviesViewDisplayLogic: AnyObject {
 class MoviesViewController: UIViewController {
     // MARK: - UICollectionViewDelegateFlowLayout
 
-     var customGird: CustomCollectionView = {
-         var grid = CustomCollectionView(frame: .zero)
+     var customGird: CustomCollectionView<MovieDisplayable> = {
+         var grid = CustomCollectionView<MovieDisplayable>()
          grid.translatesAutoresizingMaskIntoConstraints = false
          grid.backgroundColor = UIColor(named: "")
          return grid
@@ -92,31 +92,8 @@ class MoviesViewController: UIViewController {
     var remoteWorker : RemoteWorker?
     var localWorker: LocalWorker?
     var worker: MoviesViewWorker?
-    // MARK: - Private Properties
 
-    // MARK: - Main Views
 
-    /* TODO: REMOVE EXAMPLE
-        private let scrollView: UIScrollView = {
-            let scrollView = UIScrollView()
-            scrollView.bounces = true
-            scrollView.alwaysBounceVertical = true
-            scrollView.showsHorizontalScrollIndicator = false
-            return scrollView
-        }()
-    */
-
-    // MARK: Content Views
-
-    /*  TODO: REMOVE EXAMPLE
-        fileprivate let accessStackView: UIStackView = {
-            let stackView = UIStackView()
-            stackView.axis = .vertical
-            stackView.distribution = .fill
-            stackView.alignment = .fill
-            return stackView
-        }()
-    */
 
     // MARK: - Initialization
 
@@ -264,7 +241,7 @@ extension MoviesViewController: MoviesViewDisplayLogic {
         }
        
         DispatchQueue.main.async { [weak self] in
-            self?.customGird.config(data:  movies, list: self?.isPopularSearch == true ? .popular : .now_playing )
+            self?.customGird.config(data:  movies, list: self?.isPopularSearch == true ? .popular : .nowPlaying )
         }
     }
 }
@@ -276,7 +253,7 @@ extension MoviesViewController: paginationDelegate {
     }
 }
 extension MoviesViewController : movieCellDelegate {
-    func select(movie: Movie) {
+    func select(movie: MovieDisplayable) {
         router?.routeToExampleDetail(movie: movie)
     }
 }

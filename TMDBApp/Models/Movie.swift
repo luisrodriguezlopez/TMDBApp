@@ -4,9 +4,9 @@
 //
 //  Created by luis rodriguez on 14/08/24.
 //
-
+import ui_core
 import Foundation
-struct Movie  : Decodable {
+struct Movie  : Decodable , MovieDisplayable {
     var id : Int?
     var title : String?
     var override : String?

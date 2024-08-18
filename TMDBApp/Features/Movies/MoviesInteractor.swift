@@ -6,8 +6,9 @@
 //  Created by luis rodriguez on 15/08/24.
 //  Copyright © 2024 ___ORGANIZATIONNAME___. All rights reserved.
 //
+import Services
 
-enum ListType: String  {
+enum ListType: String , ListTypeProtocol {
     case popular = "popular"
     case now_playing = "now_playing"
 }

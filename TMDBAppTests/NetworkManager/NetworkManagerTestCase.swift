@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Helpers
 @testable import TMDBApp
 final class NetworkManagerTestCase: XCTestCase {
 
