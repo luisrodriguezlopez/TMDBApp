@@ -16,7 +16,6 @@
 		EE118DC52C6D9DE2007428DA /* TMDBAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE118DC42C6D9DE2007428DA /* TMDBAppUITests.swift */; };
 		EE118DC72C6D9DE2007428DA /* TMDBAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE118DC62C6D9DE2007428DA /* TMDBAppUITestsLaunchTests.swift */; };
 		EE118DD52C6DB70E007428DA /* ApiConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE118DD42C6DB70E007428DA /* ApiConfigTests.swift */; };
-		EE118DD92C6DC282007428DA /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE118DD82C6DC282007428DA /* ApiServices.swift */; };
 		EE118DDC2C6DC854007428DA /* MoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE118DDB2C6DC854007428DA /* MoviesResponse.swift */; };
 		EE118DDE2C6DC884007428DA /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE118DDD2C6DC884007428DA /* Movie.swift */; };
 		EE118DE12C6DCCF5007428DA /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE118DE02C6DCCF5007428DA /* NetworkManager.swift */; };
@@ -38,6 +37,7 @@
 		EE4882DF2C715615004605B0 /* DetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4882D92C715615004605B0 /* DetailModels.swift */; };
 		EE4882E02C715615004605B0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4882DA2C715615004605B0 /* DetailViewController.swift */; };
 		EE4882E12C715615004605B0 /* DetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4882DB2C715615004605B0 /* DetailInteractor.swift */; };
+		EE4882E52C71B334004605B0 /* Services in Frameworks */ = {isa = PBXBuildFile; productRef = EE4882E42C71B334004605B0 /* Services */; };
 		EECDE9082C6F289300C1AF9F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE207F7C2C6EBA9A00C7777B /* main.swift */; };
 		EECDE90B2C6F2F7600C1AF9F /* TestingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDE90A2C6F2F7600C1AF9F /* TestingSceneDelegate.swift */; };
 		EECDE90E2C6F63D100C1AF9F /* NetworkManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECDE90D2C6F63D100C1AF9F /* NetworkManagerTestCase.swift */; };
@@ -80,7 +80,6 @@
 		EE118DC62C6D9DE2007428DA /* TMDBAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EE118DD32C6DA9CF007428DA /* secure.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = secure.xcconfig; sourceTree = "<group>"; };
 		EE118DD42C6DB70E007428DA /* ApiConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConfigTests.swift; sourceTree = "<group>"; };
-		EE118DD82C6DC282007428DA /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
 		EE118DDB2C6DC854007428DA /* MoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesResponse.swift; sourceTree = "<group>"; };
 		EE118DDD2C6DC884007428DA /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		EE118DE02C6DCCF5007428DA /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		EE4882D92C715615004605B0 /* DetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModels.swift; sourceTree = "<group>"; };
 		EE4882DA2C715615004605B0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EE4882DB2C715615004605B0 /* DetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInteractor.swift; sourceTree = "<group>"; };
+		EE4882E22C71B143004605B0 /* Services */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Services; path = ../Services; sourceTree = "<group>"; };
 		EECDE90A2C6F2F7600C1AF9F /* TestingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingSceneDelegate.swift; sourceTree = "<group>"; };
 		EECDE90D2C6F63D100C1AF9F /* NetworkManagerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTestCase.swift; sourceTree = "<group>"; };
 		EECDE9102C6F693F00C1AF9F /* MovieWorkerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWorkerTestCase.swift; sourceTree = "<group>"; };
@@ -116,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE4882E52C71B334004605B0 /* Services in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,10 +140,12 @@
 		EE118D942C6D9DE0007428DA = {
 			isa = PBXGroup;
 			children = (
+				EE4882E22C71B143004605B0 /* Services */,
 				EE118D9F2C6D9DE0007428DA /* TMDBApp */,
 				EE118DB92C6D9DE2007428DA /* TMDBAppTests */,
 				EE118DC32C6D9DE2007428DA /* TMDBAppUITests */,
 				EE118D9E2C6D9DE0007428DA /* Products */,
+				EE4882E32C71B334004605B0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,7 +202,6 @@
 		EE118DD72C6DC25A007428DA /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				EE118DD82C6DC282007428DA /* ApiServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -287,6 +289,13 @@
 			path = DetailMovie;
 			sourceTree = "<group>";
 		};
+		EE4882E32C71B334004605B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EECDE9092C6F289900C1AF9F /* Launch */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +338,9 @@
 			dependencies = (
 			);
 			name = TMDBApp;
+			packageProductDependencies = (
+				EE4882E42C71B334004605B0 /* Services */,
+			);
 			productName = TMDBApp;
 			productReference = EE118D9D2C6D9DE0007428DA /* TMDBApp.app */;
 			productType = "com.apple.product-type.application";
@@ -453,7 +465,6 @@
 				EECDE9082C6F289300C1AF9F /* main.swift in Sources */,
 				EE118DDE2C6DC884007428DA /* Movie.swift in Sources */,
 				EE118DE12C6DCCF5007428DA /* NetworkManager.swift in Sources */,
-				EE118DD92C6DC282007428DA /* ApiServices.swift in Sources */,
 				EE207F752C6E83FD00C7777B /* MoviesRouter.swift in Sources */,
 				EE207F742C6E83FD00C7777B /* MoviesWorker.swift in Sources */,
 				EE118DAB2C6D9DE0007428DA /* TMDBApp.xcdatamodeld in Sources */,
@@ -816,6 +827,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE4882E42C71B334004605B0 /* Services */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Services;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		EE118DA92C6D9DE0007428DA /* TMDBApp.xcdatamodeld */ = {

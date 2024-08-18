@@ -6,13 +6,13 @@
 //  Created by luis rodriguez on 15/08/24.
 //  Copyright © 2024 ___ORGANIZATIONNAME___. All rights reserved.
 //
-
+import Services
 protocol MoviesViewWorkerProtocol {
     func fetchMoviewsView(list:ListType,page:Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response)-> Void)
 }
 class RemoteWorker: MoviesViewWorkerProtocol {
     func fetchMoviewsView(list:ListType,page: Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
-        ApiConfig().apiManager?.getMovies(page:page, listType: list) { movies in
+        ApiConfig().apiManager?.fetchData(page:page, listType: list) { movies in
             completion(movies)
         } onError: { error in
             
