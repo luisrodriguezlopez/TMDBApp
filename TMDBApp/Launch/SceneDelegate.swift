@@ -16,7 +16,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        let darkMode = UserDefaults.standard.bool(forKey: "darkModeEnable")
+        
+        self.window?.overrideUserInterfaceStyle = darkMode ? .dark : .light
+        
+        
+          var vc = MoviesViewController()
+             //  vc.loader = RemoteWithLocalFallBackDataLoader(remoteMovies: RemoteLoader(), localMovies: LocalLoader())
+                vc.worker = MoviesViewWorker()
+                vc.worker?.localMovies = LocalWorker()
+                vc.worker?.remoteMovies = RemoteWorker()
+                vc.remoteWorker = RemoteWorker()
+                vc.localWorker = LocalWorker()
+
+                window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+                window?.rootViewController = vc
+                window?.windowScene = windowScene
+               window?.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -52,4 +70,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
+
 
