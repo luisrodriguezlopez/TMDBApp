@@ -39,7 +39,7 @@ class DetailViewController: UIViewController {
     private var titleLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = UIColor(named: "fontColor")
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold, width: .standard)
         return label
     }()
@@ -47,7 +47,7 @@ class DetailViewController: UIViewController {
     private var overrideLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = UIColor(named: "fontColor")
         label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         return label
@@ -56,7 +56,7 @@ class DetailViewController: UIViewController {
     private var overrideTitle : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = UIColor(named: "fontColor")
         label.text = "Override"
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold, width: .standard)
         return label
@@ -65,7 +65,7 @@ class DetailViewController: UIViewController {
     private var releaseDate : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = UIColor(named: "fontColor")
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold, width: .standard)
         return label
     }()
@@ -75,7 +75,7 @@ class DetailViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .blue
         label.font = UIFont.systemFont(ofSize: 14, weight: .medium, width: .standard)
-        label.backgroundColor = .white
+        label.backgroundColor = UIColor(named: "background")
         label.tintColor = .blue
         label.textAlignment = .center
     
@@ -89,7 +89,7 @@ class DetailViewController: UIViewController {
         image.layer.cornerRadius = 8
         image.layer.masksToBounds = true
         image.image = UIImage(systemName: "globe.americas.fill")
-        image.backgroundColor = .white
+        image.backgroundColor = UIColor(named: "background")
         image.tintColor = .blue
         
         return image
@@ -98,7 +98,7 @@ class DetailViewController: UIViewController {
     private var voteAvergeLbl : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = UIColor(named: "fontColor")
         label.text = "Override"
         label.font = UIFont.systemFont(ofSize: 54, weight: .bold, width: .standard)
         return label
@@ -207,7 +207,7 @@ class DetailViewController: UIViewController {
         self.stack.addArrangedSubview(voteAvergeLbl)
         self.stack.addArrangedSubview(voteIcon)
         
-        self.view.backgroundColor = .darkText
+        self.view.backgroundColor = UIColor(named: "background")
         self.imageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 32).isActive = true
         self.imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -32).isActive = true
         self.imageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 32).isActive = true

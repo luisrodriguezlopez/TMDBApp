@@ -21,6 +21,7 @@ class MoviesViewController: UIViewController {
      var customGird: CustomCollectionView = {
          var grid = CustomCollectionView(frame: .zero)
          grid.translatesAutoresizingMaskIntoConstraints = false
+         grid.backgroundColor = UIColor(named: "")
          return grid
       }()
     
@@ -35,16 +36,29 @@ class MoviesViewController: UIViewController {
         return button
     }()
     
+    
+    var buttonDarkMode : UIButton = {
+        var button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "moon.circle"), for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .red
+        button.tintColor = .white
+        button.layer.cornerRadius = 22
+        return button
+    }()
+    
+    
     var buttonPopular : UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("🔥Most Popular 🎬", for: .normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
-        button.backgroundColor = .white
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1
+        button.backgroundColor = UIColor(named: "fontColor")
+        button.layer.borderColor = UIColor(named: "background")?.cgColor
+     //   button.layer.borderWidth = 1
         button.layer.cornerRadius = 8
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(UIColor(named: "background"), for: .normal)
 
         return button
     }()
@@ -53,11 +67,11 @@ class MoviesViewController: UIViewController {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("🔥Now Playing🎬", for: .normal)
-        button.backgroundColor = .clear
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1
-        button.tintColor = .white
+        button.backgroundColor = UIColor(named: "background")
+        button.layer.borderColor = UIColor(named: "fontColor")?.cgColor
+     //   button.layer.borderWidth = 1
         button.layer.cornerRadius = 8
+        button.setTitleColor(UIColor(named: "fontColor"), for: .normal)
         return button
     }()
     
@@ -143,22 +157,26 @@ class MoviesViewController: UIViewController {
     // MARK: - Private Methods
 
     private func setupUI() {
-        
+      
+        self.view.backgroundColor = UIColor(named: "background")
         self.view.addSubview(buttonLayaout)
         self.view.addSubview(buttonPopular)
         self.view.addSubview(buttonNowPlaying)
         buttonLayaout.addTarget(self, action: #selector(changeLayaout), for: .touchUpInside)
         buttonPopular.addTarget(self, action: #selector(popularMovies), for: .touchUpInside)
         buttonNowPlaying.addTarget(self, action: #selector(nowPlaying), for: .touchUpInside)
+        buttonDarkMode.addTarget(self, action: #selector(changeDarkMode), for: .touchUpInside)
 
         self.customGird.pagination = self
         self.customGird.selectDelegate = self
         self.view.addSubview(customGird)
-        
+        self.view.addSubview(buttonDarkMode)
+
  
 
         
         customGird.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        customGird.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 60).isActive = true
         customGird.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         customGird.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         customGird.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
@@ -167,6 +185,13 @@ class MoviesViewController: UIViewController {
         buttonLayaout.bottomAnchor.constraint(equalTo: self.customGird.topAnchor, constant: -8).isActive = true
         buttonLayaout.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant:
         -16).isActive = true
+        
+        buttonDarkMode.heightAnchor.constraint(equalToConstant: 42).isActive = true
+        buttonDarkMode.widthAnchor.constraint(equalToConstant: 42).isActive = true
+        buttonDarkMode.bottomAnchor.constraint(equalTo: self.customGird.bottomAnchor, constant: -8).isActive = true
+        buttonDarkMode.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,constant:
+        -16).isActive = true
+        
         
         buttonPopular.heightAnchor.constraint(equalToConstant: 42).isActive = true
         buttonPopular.widthAnchor.constraint(equalToConstant: 150).isActive = true
@@ -204,20 +229,28 @@ class MoviesViewController: UIViewController {
     
     @objc func popularMovies() {
         self.isPopularSearch = true
-        self.buttonPopular.setTitleColor(.black, for: .normal)
-        self.buttonPopular.backgroundColor = .white
-        self.buttonNowPlaying.setTitleColor(.white, for: .normal)
-        self.buttonNowPlaying.backgroundColor = .clear
+        self.buttonPopular.setTitleColor(UIColor(named: "background"), for: .normal)
+        self.buttonPopular.backgroundColor = UIColor(named: "fontColor")
+        self.buttonNowPlaying.setTitleColor(UIColor(named: "fontColor"), for: .normal)
+        self.buttonNowPlaying.backgroundColor = UIColor(named: "background")
         self.interactor?.fetchMoviewsView(type: .popular)
     }
     
     @objc func nowPlaying() {
         self.isPopularSearch = false 
-        self.buttonNowPlaying.setTitleColor(.black, for: .normal)
-        self.buttonNowPlaying.backgroundColor = .white
-        self.buttonPopular.setTitleColor(.white, for: .normal)
-        self.buttonPopular.backgroundColor = .clear
+        self.buttonNowPlaying.setTitleColor(UIColor(named: "background"), for: .normal)
+        self.buttonNowPlaying.backgroundColor = UIColor(named: "fontColor")
+        self.buttonPopular.setTitleColor(UIColor(named: "fontColor"), for: .normal)
+        self.buttonPopular.backgroundColor = UIColor(named: "background")
         self.interactor?.fetchMoviewsView(type: .now_playing)
+    }
+    
+    @objc func changeDarkMode() {
+        let darkMode = UserDefaults.standard.bool(forKey: "darkModeEnable")
+        let appdelegate = UIApplication.shared.windows.first
+        appdelegate?.overrideUserInterfaceStyle =  darkMode ? .dark : .light
+        UserDefaults.standard.set(!darkMode, forKey: "darkModeEnable")
+
     }
     
 }

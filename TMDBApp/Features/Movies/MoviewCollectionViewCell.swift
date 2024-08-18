@@ -49,7 +49,7 @@ class MoviewCollectionViewCell: UICollectionViewCell {
         imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
 
-        self.backgroundColor = .black
+        self.backgroundColor = UIColor(named: "background")
        // imageView.clipsToBounds = true
        // imageView.layer.cornerRadius = 40
     }

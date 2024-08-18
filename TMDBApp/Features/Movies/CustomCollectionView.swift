@@ -30,7 +30,6 @@ class CustomCollectionView: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isUserInteractionEnabled = true
-        collectionView.backgroundColor = .clear
         // collectionView.alwaysBounceHorizontal = true
         return collectionView
     }()
