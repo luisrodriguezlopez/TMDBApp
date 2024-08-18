@@ -26,7 +26,7 @@ class CustomCollectionView: UIView {
         layout.scrollDirection = .horizontal
         let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isScrollEnabled = true
-        
+        collectionView.accessibilityLabel = "peliculas"
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isUserInteractionEnabled = true

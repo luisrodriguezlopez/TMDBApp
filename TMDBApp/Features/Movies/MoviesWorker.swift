@@ -7,12 +7,18 @@
 //  Copyright © 2024 ___ORGANIZATIONNAME___. All rights reserved.
 //
 import Services
+import Foundation
 protocol MoviesViewWorkerProtocol {
     func fetchMoviewsView(list:ListType,page:Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response)-> Void)
 }
 class RemoteWorker: MoviesViewWorkerProtocol {
+    let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String ?? ""
+    let base_url = Bundle.main.infoDictionary?["BASE_URL"] as? String ?? ""
+    let version = Bundle.main.infoDictionary?["API_VERSION"] as? String ?? ""
+    
+    
     func fetchMoviewsView(list:ListType,page: Int,completion: @escaping (MoviesViewModels.FetchMoviewsView.Response) -> Void) {
-        ApiConfig().apiManager?.fetchData(page:page, listType: list) { movies in
+        ApiConfig(url: base_url, method: "GET", token: apiKey, version: version).apiManager?.fetchData(page:page, listType: list) { movies in
             completion(movies)
         } onError: { error in
             
